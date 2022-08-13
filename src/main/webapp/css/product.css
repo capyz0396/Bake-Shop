@@ -1,0 +1,46 @@
+.header-blue {
+    height: fit-content;
+}
+
+.bg-white {
+    background-color: #FDE!important;
+}
+
+.form-product {
+    min-height: 554px;
+    margin: 20px;
+}
+
+.img-fluid {
+    height: 300px;
+    border-radius: 15px;
+}
+
+.rounded {
+    border-radius: 15px !important;
+}
+
+.footer_area {
+    padding-top: 18px;
+    padding-bottom: 7px;
+}
+
+.row {
+    border: 1px solid white;
+    border-radius: 20px;
+    padding-top: 16px;
+}
+
+.add_cart {
+    text-align: center;
+    padding-bottom: 10px;
+}
+
+.title-product {
+    height: fit-content;
+    width: 100%;
+    text-align: center;
+    font-family: cursive;
+    color: azure;
+    font-size: 50px;
+}
