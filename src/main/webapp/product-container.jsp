@@ -31,8 +31,9 @@
 
                         <%--Tên và giá--%>
                         <div class="p-4">
+                            <input name="action" value="detail" type="hidden">
                             <input style="display: none" name="product" value="${product.productID}">
-                            <h5><a href="controller?action=detailPage" class="text-dark">${product.productName}</a></h5>
+                            <h5>${product.productName}</h5>
                             <p class="small text-muted mb-0">Giá: ${product.productPrice}đ</p>
                         </div>
                     </form>

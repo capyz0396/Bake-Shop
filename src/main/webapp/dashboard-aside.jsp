@@ -1,7 +1,7 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 
 <%--Get bean để lấy thông tin account--%>
-<jsp:useBean id="account" class="com.example.test.Account" scope="session"/>
+<jsp:useBean id="account" class="com.example.test.model.Account" scope="session"/>
 <aside class="left-sidebar" data-sidebarbg="skin6">
     <div class="scroll-sidebar">
         <nav class="sidebar-nav">

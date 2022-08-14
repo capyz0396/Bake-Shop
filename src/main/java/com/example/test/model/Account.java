@@ -1,4 +1,4 @@
-package com.example.test;
+package com.example.test.model;
 
 public class Account {
 
@@ -9,6 +9,8 @@ public class Account {
     private String address;
     private String email;
     private String phone;
+
+    private String error;
 
     /*Sử dụng biến logged để check trạng thái logged của người dùng*/
     private boolean logged = false;
@@ -140,5 +142,31 @@ public class Account {
 
     public void setEmail(String email) {
         this.email = email;
+    }
+
+    public String getError() {
+        return error;
+    }
+    public boolean validate() {
+
+        if (username.length() == 0 || password.length() == 0) {
+            error = "Username and password cannot be null";
+            return false;
+        }
+
+        /*Trường hợp client nhập input dưới 6 kí tự*/
+        else if (username.length() < 6 || password.length() < 6) {
+            error = "Username and password must be at least 6 characters";
+            return false;
+        }
+
+        /*Trường hợp có kí tự khoảng trống trong username và password*/
+        else if (username.matches("\\w*\\s+\\w*")) {
+            error = "Username and password cannot contain space";
+            return false;
+        }
+        else {
+            return true;
+        }
     }
 }

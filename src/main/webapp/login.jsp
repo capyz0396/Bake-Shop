@@ -10,7 +10,7 @@
 <body>
 
 <%--Get bean để kiểm tra người dùng đã đăng nhập hay chưa--%>
-<jsp:useBean id="account" class="com.example.test.Account" scope="session"/>
+<jsp:useBean id="account" class="com.example.test.model.Account" scope="session"/>
 
 <%--Nếu đã đăng nhập thì không thể truy cập trang login nữa--%>
 <% if (account.isLogged()) {

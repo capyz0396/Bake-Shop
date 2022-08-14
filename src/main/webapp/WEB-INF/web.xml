@@ -60,7 +60,7 @@
 
     <servlet>
         <servlet-name>controller</servlet-name>
-        <servlet-class>com.example.test.Controller</servlet-class>
+        <servlet-class>com.example.test.controller.Controller</servlet-class>
     </servlet>
     <servlet-mapping>
         <servlet-name>controller</servlet-name>

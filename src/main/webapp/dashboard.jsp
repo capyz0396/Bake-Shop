@@ -10,7 +10,7 @@
 <body>
 
 <%--Get bean từ session để đối chiếu--%>
-<jsp:useBean id="account" class="com.example.test.Account" scope="session"/>
+<jsp:useBean id="account" class="com.example.test.model.Account" scope="session"/>
 
 <%--Nếu đây là trang đầu tiên được tài khoản administrator truy cập thì hiện thông báo welcome--%>
 <% if (account.isLogged() && account.getUsername().matches("administrator") && account.getTime() == 1) { %>

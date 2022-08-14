@@ -39,6 +39,7 @@
             </label><br>
 
             <%--Button submit để tiến hành gửi form--%>
+            <input name="action" value="cart" type="hidden">
             <input class="button-add-to-cart" type="submit" value="Add to card">
         </form>
     </div>

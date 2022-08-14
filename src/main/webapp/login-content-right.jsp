@@ -4,7 +4,7 @@
 <div class=" box-2 d-flex flex-column h-100">
 
     <%--Vì cần xác nhận thông tin với server nên sử dụng thẻ form--%>
-    <form action="loginController" method="post">
+    <form action="controller" method="post">
 
         <%--Tiêu đề--%>
         <p class="lblTitle" style>Log in</p>
@@ -78,7 +78,7 @@
         } %>
 
         <%--button để submit thông tin lên server--%>
-        <button class="btnlogin" type="submit">Log in</button>
+        <button class="btnlogin" type="submit" name="action" value="login">Log in</button>
 
         <%--Get lỗi từ hệ thống nếu có--%>
         <% String error = (String) request.getAttribute("error");

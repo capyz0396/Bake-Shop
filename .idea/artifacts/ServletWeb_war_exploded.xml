@@ -13,7 +13,21 @@
         <element id="directory" name="classes">
           <element id="module-output" name="ServletWeb" />
         </element>
+        <element id="directory" name="lib">
+          <element id="library" level="project" name="Maven: org.springframework:spring-webmvc:5.3.22" />
+          <element id="library" level="project" name="Maven: org.springframework:spring-aop:5.3.22" />
+          <element id="library" level="project" name="Maven: org.springframework:spring-beans:5.3.22" />
+          <element id="library" level="project" name="Maven: org.springframework:spring-context:5.3.22" />
+          <element id="library" level="project" name="Maven: org.springframework:spring-core:5.3.22" />
+          <element id="library" level="project" name="Maven: org.springframework:spring-jcl:5.3.22" />
+          <element id="library" level="project" name="Maven: org.springframework:spring-expression:5.3.22" />
+          <element id="library" level="project" name="Maven: org.springframework:spring-web:5.3.22" />
+        </element>
       </element>
+      <element id="directory" name="META-INF">
+        <element id="file-copy" path="$PROJECT_DIR$/target/Test-1.0/META-INF/MANIFEST.MF" />
+      </element>
+      <element id="javaee-facet-resources" facet="ServletWeb/web/Web" />
     </root>
   </artifact>
 </component>

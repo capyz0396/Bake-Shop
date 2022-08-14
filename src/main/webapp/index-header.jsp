@@ -1,6 +1,6 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib uri = "http://java.sun.com/jsp/jstl/core" prefix = "c" %>
-<jsp:useBean id="account" class="com.example.test.Account" scope="session"/>
+<jsp:useBean id="account" class="com.example.test.model.Account" scope="session"/>
 
 <%--Header sẽ được đặt trong thẻ nav vì có dạng menu--%>
 <nav class="navbar navbar-light navbar-expand-md navigation-clean-search">
@@ -18,7 +18,8 @@
             <form name="form" class="form-inline mr-auto" action="controller" method="get">
                 <div class="form-group">
                     <label for="search-field"><i class="fa fa-search text-white"></i></label>
-                    <input class="form-control search-field" type="search" id="search-field" name="search" placeholder="Keyword..." value="${keyword}">
+                    <input name="action" value="search" type="hidden">
+                    <input class="form-control search-field" type="search" id="search-field" name="keyword" placeholder="Keyword..." value="${keyword}">
                 </div>
             </form>
 
