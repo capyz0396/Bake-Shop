@@ -17,34 +17,31 @@ import java.util.List;
 
 public class Controller extends HttpServlet {
 
-    /*List products chứa products được tìm kiếm hoặc toàn bộ products khi show ở trang product*/
+    /*List products for show product on product page*/
     List<Product> products = new ArrayList<>();
 
-    /*List originalProducts chứa các sản phẩm được đặt vào giỏ hàng*/
+    /*List originalProducts hold quantity customer add to cart*/
     List<Product> originalProducts = new ArrayList<>();
 
-    /*Chứa toàn bộ thông tin account với List*/
-    List<Account> accounts = new ArrayList<>();
-
-    /*Chứa mọi thông tin client cần ở session*/
+    /*Session will be storage save data*/
     HttpSession session;
 
+    /*When logged, use this account get information user*/
     Account account;
 
 
     /**
      *
-     * @param req an {@link HttpServletRequest} object that contains the request the client has made of the servlet
-     *
-     * @param resp an {@link HttpServletResponse} object that contains the response the servlet sends to the client
-     *
+     * @param req
+     * @param resp
      * @throws IOException
      */
     public void doGet(HttpServletRequest req, HttpServletResponse resp) throws IOException {
 
         try {
-            products = new ProductDAO().getProducts();
-            if (originalProducts.size() == 0) {
+            /*When controller running, alway prepare list products size and list original for show job*/
+            if (products.size() == 0 && originalProducts.size() == 0) {
+                products = new ProductDAO().getProducts();
                 originalProducts = products;
             }
         }
@@ -52,27 +49,31 @@ public class Controller extends HttpServlet {
             throw new RuntimeException(e);
         }
 
-        /*Nếu nhận được req từ client, kiểm tra theo từng trường hợp để xử lý*/
+        /*Controller will set value for action variable*/
         String action = req.getParameter("action");
 
+        /*Find value of action variable and work by case*/
         switch (action) {
 
+            /*Set attribute by products list and redirect to product.jsp*/
             case "productPage":
                 session = req.getSession();
                 session.setAttribute("products", products);
                 resp.sendRedirect("product");
                 break;
 
+            /*Redirect to login page*/
             case "loginPage":
                 resp.sendRedirect("login");
                 break;
 
-            case "login":
-                System.out.println("Right here");
-                break;
-
+            /*Update data in products list*/
             case "search":
+
+                /*Get keyword from request*/
                 String keyword = req.getParameter("keyword");
+
+                /*Query product name by keyword*/
                 try {
                     products = new ProductDAO().getProducts(keyword);
                 }
@@ -80,105 +81,143 @@ public class Controller extends HttpServlet {
                     throw new RuntimeException(e);
                 }
 
+                /*Get session prepare set new attribute (new products list)*/
                 session = req.getSession();
 
-                /*Nếu list products vẫn có độ dài = 0 thì trả về tất cả sản phẩm*/
+                /*Query by keyword but not found*/
                 if (products.size() == 0) {
+
+                    /*Refill products list by originalProducts list*/
                     products = originalProducts;
+
+                    /*Set attribute not found, this job make notification in product page*/
                     session.setAttribute("notfound", true);
                 }
 
-                /*Ngược lại trả về thông báo false*/
+                /*Otherwise, set attribute not found with false*/
                 else {
                     session.setAttribute("notfound", false);
                 }
 
-                /*Gán từ khóa và list products vào session*/
+                /*Set attribue keyword and products to session*/
                 session.setAttribute("keyword", keyword);
                 session.setAttribute("products", products);
 
-                /*Điều hướng đến trang product để cập nhật lại sản phẩm được tìm kiếm*/
+                /*Redirect to product page*/
                 resp.sendRedirect("product");
                 break;
 
+            /*Renew account object*/
             case "delete":
-                account = (Account) req.getSession().getAttribute("account");
-                account.setUsername(null);
-                account.setPassword(null);
-                account.setLogged(false);
-                account.setTime(0);
 
+                /*Get account from session and renew it*/
+                account = (Account) req.getSession().getAttribute("account");
+                account = new Account();
+
+                /*Set quantity of original product list to 0*/
                 for (Product i: originalProducts) {
                     i.setProductQuantity(0);
                 }
 
+                /*Redirect to index page*/
                 resp.sendRedirect("./");
                 break;
 
+            /*Set information product and redirect to detail page*/
             case "detail":
 
-                /*Nếu nhận được product từ client, xử lý*/
+                /*Get product name from clicked action of user*/
                 String productName = req.getParameter("product");
 
-                /*Tạo 1 biến chứa toàn bộ thông tin product được yêu cầu*/
-                Product product = null;
-
-                /*Tìm ra thông tin product trong list đã lưu từ trước*/
-                for (Product i:products) {
+                /*Find that product and set attribute it*/
+                for (Product i:originalProducts) {
                     if (productName.matches(i.getProductID())) {
-                        product = i;
+                        session.setAttribute("productDetail", i);
                     }
                 }
 
-                session.setAttribute("productDetail", product);
+                /*Redirect to detail page*/
                 resp.sendRedirect("detail");
                 break;
 
             case "cart":
 
-                /*Nếu nhận được selected từ client, xử lý*/
+                /*In session, get product and account*/
                 String selected = req.getParameter("selected");
                 account = (Account) req.getSession().getAttribute("account");
 
+                /*When user is logged*/
                 if (account.isLogged()) {
 
+                    /*Get quantity customer add to cart*/
                     int quantity = Integer.parseInt(req.getParameter("droplist"));
 
+                    /*Add quantity to object in original product list*/
                     for (Product i: originalProducts) {
+
+                        /*Find object by Product ID and set new quantity*/
                         if (i.getProductID().matches(selected)) {
                             i.setProductQuantity(i.getProductQuantity() + quantity);
                         }
                     }
 
+                    /*Renew product list*/
                     products = new ArrayList<>();
+
+                    /*Set attribute original product list*/
                     session.setAttribute("originalProducts", originalProducts);
+
+                    /*Redirect to self for refill products */
                     resp.sendRedirect("controller?action=productPage");
                 }
+
+                /*User not logged, redirect to login page*/
                 else {
-                    resp.sendRedirect("controller?action=loginPage");
+                    resp.sendRedirect("login");
                 }
                 break;
 
+            /*Insert new order to database, add all product in cart to this new order*/
             case "order":
                 try {
                     new OrderDAO().insertOrder(account, originalProducts);
                 } catch (ClassNotFoundException | SQLException e) {
                     throw new RuntimeException(e);
                 }
+
+                /*Redirect to index page*/
                 resp.sendRedirect("./");
                 break;
         }
     }
 
+
+    /**
+     *
+     * @param req
+     * @param resp
+     * @throws ServletException
+     * @throws IOException
+     */
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
+        /*Get value action from parameter*/
         String action = req.getParameter("action");
 
+        /*Validate object and if it pass, will check it with database*/
         if (action.matches("login")) {
-            Account account = new Account(req.getParameter("username"), req.getParameter("password"));
+
+            /*Set account object by username, password from form login page*/
+            account = new Account(req.getParameter("username"), req.getParameter("password"));
+
+            /*Validate it, if pass*/
             if (account.validate()) {
+
+                /*Check it with database*/
                 try {
+
+                    /*If passed, set cookies when remember is checked*/
                     if (new AccountDAO().checkAccount(account)) {
 
                         req.getSession().setAttribute("account", account);
@@ -191,24 +230,40 @@ public class Controller extends HttpServlet {
                             cookieUsername.setMaxAge(1800);
                             cookiePassword.setMaxAge(1800);
                         }
+
+                        /*Otherwise, delete all cookies*/
                         else {
                             cookieUsername.setMaxAge(0);
                             cookiePassword.setMaxAge(0);
                         }
 
+                        /*Add new value of cookies to response*/
                         resp.addCookie(cookieUsername);
                         resp.addCookie(cookiePassword);
+
+                        /*Redirect to dashboard*/
                         resp.sendRedirect("dashboard");
                     }
+
+                    /*Not found data in database*/
                     else {
+
+                        /*Set error attribute in forward to login page*/
                         req.setAttribute("error", "Username and password is unavailable");
                         req.getRequestDispatcher("login").forward(req, resp);
                     }
                 } catch (ClassNotFoundException | SQLException e) {
                     throw new RuntimeException(e);
                 }
-            } else {
+            }
+
+            /*Validate not pass*/
+            else {
+
+                /*Get error from inside object, set attribute*/
                 req.setAttribute("error", account.getError());
+
+                /*Redirect to login page*/
                 req.getRequestDispatcher("login").forward(req, resp);
             }
         }

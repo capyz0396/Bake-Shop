@@ -2,13 +2,13 @@ package com.example.test.model;
 
 public class Product {
 
+    /*Variable for product object*/
     private String ProductID;
     private String ProductName;
     private int ProductPrice;
     private String ProductDetail;
     private String ProductIMGURL;
     private int ProductQuantity;
-
 
     public String getProductID() {
         return ProductID;
