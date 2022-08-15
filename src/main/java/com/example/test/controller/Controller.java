@@ -40,9 +40,11 @@ public class Controller extends HttpServlet {
 
         try {
             /*When controller running, alway prepare list products size and list original for show job*/
-            if (products.size() == 0 && originalProducts.size() == 0) {
+            if (products.size() == 0) {
                 products = new ProductDAO().getProducts();
-                originalProducts = products;
+                if (originalProducts.size() == 0) {
+                    originalProducts = products;
+                }
             }
         }
         catch (ClassNotFoundException | SQLException e) {
