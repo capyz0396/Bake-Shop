@@ -1,13 +1,13 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 
-<%--Get bean để lấy thông tin account--%>
+<%--Get bean from session--%>
 <jsp:useBean id="account" class="com.example.test.model.Account" scope="session"/>
 <aside class="left-sidebar" data-sidebarbg="skin6">
     <div class="scroll-sidebar">
         <nav class="sidebar-nav">
             <ul id="sidebarnav">
 
-                <%--Dòng này chứa các thông tin cơ bản của người dùng--%>
+                <%--This lines contain user's information--%>
                 <li>
                     <div class="user-profile d-flex no-block dropdown m-t-20">
                         <div class="user-pic"><img src="img/1.jpg" alt="users" class="rounded-circle" width="40" /></div>

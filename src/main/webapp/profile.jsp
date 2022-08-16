@@ -9,18 +9,18 @@
 </head>
 <body>
 
-<%--Get bean từ session để đối chiếu--%>
+<%--Get bean from session--%>
 <jsp:useBean id="account" class="com.example.test.model.Account" scope="session"/>
 
-<%--Nếu không phải tài khoản admin hoặc chưa đăng nhập, điều hướng đến trang chủ--%>
+<%--If user account isn't admin, redirect to index.jsp--%>
 <% if (!account.isLogged() || !account.getUsername().matches("administrator")) {
 response.sendRedirect("./");
 } %>
 
-<%--div main-wrapper chứa toàn bộ nội dung trang--%>
+<%--div main-wrapper contain all design form--%>
 <div id="main-wrapper" data-layout="vertical" data-navbarbg="skin5" data-sidebartype="full" data-sidebar-position="absolute" data-header-position="absolute" data-boxed-layout="full">
 
-    <%--Nội dung trang được phân nhỏ thành 3 file jsp như dưới đây--%>
+    <%--Slit content to 3 file, include it by this code--%>
     <jsp:include page="dashboard-header.jsp"/>
     <jsp:include page="dashboard-aside.jsp"/>
     <jsp:include page="profile-page-wrapper.jsp"/>

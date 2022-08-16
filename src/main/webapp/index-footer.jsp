@@ -1,13 +1,13 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 
-<%--Nội dung footer được đặt trong thẻ footer--%>
+<%--Footer was contain by footer tag--%>
 <footer class="footer_area section_padding_130_0">
 
-    <%--div container dùng để định hình bố cục--%>
+    <%--div container design pattern interface--%>
     <div class="container">
         <div id="row-footer" class="row">
 
-            <%--Mục follow--%>
+            <%--Follow part--%>
             <div class="col-12 col-sm-6 col-lg-4">
                 <div class="single-footer-widget section_padding_0_130">
                     <div class="footer-logo mb-3"></div>
@@ -16,7 +16,7 @@
                 </div>
             </div>
 
-            <%--Mục about--%>
+            <%--About part--%>
             <div class="col-12 col-sm-6 col-lg">
                 <div class="single-footer-widget section_padding_0_130">
                     <h5 class="widget-title">About</h5>
@@ -29,7 +29,7 @@
                 </div>
             </div>
 
-            <%--Mục news--%>
+            <%--News part--%>
             <div class="col-12 col-sm-6 col-lg">
                 <div class="single-footer-widget section_padding_0_130">
                     <h5 class="widget-title">News</h5>
@@ -41,7 +41,7 @@
                 </div>
             </div>
 
-            <%--Mục contact--%>
+            <%--Contact part--%>
             <div class="col-12 col-sm-6 col-lg">
                 <div class="single-footer-widget section_padding_0_130">
                     <h5 class="widget-title">Contact</h5>

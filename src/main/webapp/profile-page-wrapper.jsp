@@ -1,20 +1,20 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 
-<%--div page-wrapper chứa toàn bộ nội dung--%>
+<%--div page-wrapper contain all content--%>
 <div class="page-wrapper">
 
-    <%--Tiêu đề trang--%>
+    <%--Title--%>
     <div class="page-breadcrumb">
         <div class="col-5">
             <h4 class="page-title">Profile Page</h4>
         </div>
     </div>
 
-    <%--Phần chứa các thông tin người dùng--%>
+    <%--Information of user account--%>
     <div class="container-fluid">
         <div class="row">
 
-            <%--Tên và chức vụ--%>
+            <%--Name and position--%>
             <div class="col-lg-4 col-xlg-3 col-md-5">
                 <div class="card">
                     <div class="card-body">
@@ -38,15 +38,15 @@
                 </div>
             </div>
 
-            <%--Chứa form--%>
+            <%--Form--%>
             <div class="col-lg-8 col-xlg-9 col-md-7">
                 <div class="card">
                     <div class="card-body">
 
-                        <%--Sử dụng form để cập nhật thông tin người dùng--%>
+                        <%--Update information by form--%>
                         <form class="form-horizontal form-material mx-2">
 
-                            <%--Họ và tên--%>
+                            <%--Full name--%>
                             <div class="form-group">
                                 <label class="col-md-12">Full Name</label>
                                 <div class="col-md-12">
@@ -65,7 +65,7 @@
                                 </div>
                             </div>
 
-                            <%--Mật khẩu--%>
+                            <%--Password--%>
                             <div class="form-group">
                                 <label class="col-md-12">Password</label>
                                 <div class="col-md-12">
@@ -73,7 +73,7 @@
                                 </div>
                             </div>
 
-                            <%--Số điện thoại--%>
+                            <%--Phone number--%>
                             <div class="form-group">
                                 <label class="col-md-12">Phone No</label>
                                 <div class="col-md-12">
@@ -82,7 +82,7 @@
                                 </div>
                             </div>
 
-                            <%--Lời nhắn--%>
+                            <%--Message--%>
                             <div class="form-group">
                                 <label class="col-md-12">Message</label>
                                 <div class="col-md-12">
@@ -90,7 +90,7 @@
                                 </div>
                             </div>
 
-                            <%--Quốc gia--%>
+                            <%--Country--%>
                             <div class="form-group">
                                 <label class="col-sm-12">Select Country</label>
                                 <div class="col-sm-12">
@@ -107,7 +107,7 @@
                                 </div>
                             </div>
 
-                            <%--Cập nhật thông tin--%>
+                            <%--Update button--%>
                             <div class="form-group">
                                 <div class="col-sm-12">
                                     <button class="btn btn-success text-white">Update Profile</button>

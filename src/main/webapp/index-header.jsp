@@ -2,7 +2,7 @@
 <%@ taglib uri = "http://java.sun.com/jsp/jstl/core" prefix = "c" %>
 <jsp:useBean id="account" class="com.example.test.model.Account" scope="session"/>
 
-<%--Header sẽ được đặt trong thẻ nav vì có dạng menu--%>
+<%--Header of page was contain by this div--%>
 <nav class="navbar navbar-light navbar-expand-md navigation-clean-search">
 
     <div class="container-fluid"><a class="navbar-brand" href="./">BAKE SHOP BUILDING</a><button data-toggle="collapse" class="navbar-toggler" data-target="#navcol-1"><span class="sr-only">Toggle navigation</span><span class="navbar-toggler-icon"></span></button>
@@ -14,7 +14,7 @@
                 <li class="nav-item" role="presentation"><a class="nav-link" href="controller?action=productPage">Product</a></li>
             </ul>
 
-            <%--form chứa search bar để gửi thông tin đến server--%>
+            <%--form contain search bar for sent request to server--%>
             <form name="form" class="form-inline mr-auto" action="controller" method="get">
                 <div class="form-group">
                     <label for="search-field"><i class="fa fa-search text-white"></i></label>
@@ -23,14 +23,14 @@
                 </div>
             </form>
 
-            <%--Trường hợp người dùng đã đăng nhập--%>
+            <%--When account is logged, show account name, to cart button--%>
             <% if (account.isLogged()) { %>
                 <a id="btnCart" class="btn btn-light action-button" role="button" href="cart">My cart</a>
                 <a id="btnLogin" class="btn btn-light action-button" role="button" href="profile"><%= account.getUsername() %></a>
                 <a id="btnSignup" class="btn btn-light action-button" role="button" href="controller?action=delete">Sign out</a>
             <% }
 
-            /*Trường hợp ngược lại*/
+            /*Else, show button login, sign up*/
             else { %>
                 <a id="btnLogin" class="btn btn-light action-button" role="button" href="controller?action=loginPage">Log in</a>
                 <a id="btnSignup" class="btn btn-light action-button" role="button" href="#">Sign up</a>

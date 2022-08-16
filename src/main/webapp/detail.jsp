@@ -12,10 +12,10 @@
 </head>
 <body>
 
-<%--div header-blue chứa toàn bộ nội dung trang--%>
+<%--div header-blue contain all design form--%>
 <div class="header-blue">
 
-    <%--Nội dung trang được phân nhỏ thành 3 file jsp như dưới đây--%>
+    <%--Slit content to 3 file, include it by this code--%>
     <jsp:include page="index-header.jsp"/>
     <jsp:include page="detail-container.jsp"/>
     <jsp:include page="index-footer.jsp"/>

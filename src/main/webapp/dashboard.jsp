@@ -9,25 +9,25 @@
 </head>
 <body>
 
-<%--Get bean từ session để đối chiếu--%>
+<%--Get bean from session and check logged--%>
 <jsp:useBean id="account" class="com.example.test.model.Account" scope="session"/>
 
-<%--Nếu đây là trang đầu tiên được tài khoản administrator truy cập thì hiện thông báo welcome--%>
+<%--If account logged is admin, welcome alert is show--%>
 <% if (account.isLogged() && account.getUsername().matches("administrator") && account.getTime() == 1) { %>
 <script>
     alert('Welcome to home, admin');
 </script>
 <% }
 
-/*Ngược lại điều hướng đến trang chủ*/
+/*Else, redirect to index.jsp*/
 else if (!account.isLogged() || !account.getUsername().matches("administrator")){ %>
     <% response.sendRedirect("./");
 } %>
 
-<%--div main-wrapper chứa toàn bộ nội dung trang--%>
+<%--div main-wrapper contain all design form--%>
 <div id="main-wrapper" data-layout="vertical" data-navbarbg="skin5" data-sidebartype="full" data-sidebar-position="absolute" data-header-position="absolute" data-boxed-layout="full">
 
-    <%--Nội dung trang được phân nhỏ thành 3 file jsp như dưới đây--%>
+    <%--Slit content to 3 file, include it by this code--%>
     <jsp:include page="dashboard-header.jsp"/>
     <jsp:include page="dashboard-aside.jsp"/>
     <jsp:include page="dashboard-page-wrapper.jsp"/>

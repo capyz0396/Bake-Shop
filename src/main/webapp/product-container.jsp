@@ -1,35 +1,35 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 
-<%--div title-product chứa lời chào chọn sản phẩm--%>
+<%--div title-product contain title--%>
 <div class="title-product">CHOOSE FOR YOUR SAVOUR ٩(^‿^)۶</div>
 
-<%--div form-product chứa toàn bộ sản phẩm--%>
+<%--div form-product contain all product--%>
 <div class="form-product">
     <div class="row">
 
-        <%--Nếu jsp này nhận được attribute notfound thì báo lỗi--%>
+        <%--If this page receive attribute notfound, alert will show--%>
         <c:if test="${notfound}">
             <script>alert("Cannot found products you search!")</script>
         </c:if>
 
-        <%--Sau khi báo lỗi hoặc không báo thì đều set mới bằng false--%>
+        <%--Alert show later, set notfound to false--%>
         <c:set var="notfound" value="${false}" scope="session"/>
 
-        <%--Sử dụng vòng lặp foreach để duyệt từng sản phẩm--%>
+        <%--Get each object from product list--%>
         <c:forEach items="${products}" var="product">
 
-            <%--Mỗi sản phẩm đều được tạo 1 div riêng chứa hình ảnh và giá--%>
+            <%--Each product by design 1 div--%>
             <div class="col-xl-3 col-lg-4 col-md-6 mb-4">
                 <div class="bg-white rounded shadow-sm">
 
-                    <%--Mỗi sản phẩm đều có form riêng để khi người dùng ấn sẽ gửi lựa chọn đến server điều hướng--%>
+                    <%--Form contain information, click will sent request to server--%>
                     <form action="controller" method="get">
 
-                        <%--Hình ảnh--%>
+                        <%--Image--%>
                         <input type="image" src="${product.productIMGURL}" alt="Submit" class="img-fluid card-img-top">
 
-                        <%--Tên và giá--%>
+                        <%--Name and cost--%>
                         <div class="p-4">
                             <input name="action" value="detail" type="hidden">
                             <input style="display: none" name="product" value="${product.productID}">

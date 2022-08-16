@@ -9,19 +9,19 @@
 </head>
 <body>
 
-<%--Get bean để kiểm tra người dùng đã đăng nhập hay chưa--%>
+<%--Get bean from session--%>
 <jsp:useBean id="account" class="com.example.test.model.Account" scope="session"/>
 
-<%--Nếu đã đăng nhập thì không thể truy cập trang login nữa--%>
+<%--If logged, cannot go to here, redirect to index.jsp--%>
 <% if (account.isLogged()) {
     response.sendRedirect("./");
 } %>
 
-<%--div container chứa toàn bộ nội dung trang--%>
+<%--div container contain all design form--%>
 <div class="container">
     <div class="body d-md-flex align-items-center justify-content-between">
 
-        <%--Nội dung trang được phân nhỏ thành 2 file jsp như dưới đây--%>
+        <%--Slit content to 2 file, include it by this code--%>
         <jsp:include page="login-content-left.jsp"/>
         <jsp:include page="login-content-right.jsp"/>
     </div>
