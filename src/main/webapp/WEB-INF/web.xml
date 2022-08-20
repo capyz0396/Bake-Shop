@@ -67,24 +67,6 @@
         <url-pattern>/controller</url-pattern>
     </servlet-mapping>
 
-    <servlet>
-        <servlet-name>loginController</servlet-name>
-        <servlet-class>com.example.test.LoginController</servlet-class>
-    </servlet>
-    <servlet-mapping>
-        <servlet-name>loginController</servlet-name>
-        <url-pattern>/loginController</url-pattern>
-    </servlet-mapping>
-
-    <context-param>
-        <param-name>username</param-name>
-        <param-value>administrator</param-value>
-    </context-param>
-    <context-param>
-        <param-name>password</param-name>
-        <param-value>123456</param-value>
-    </context-param>
-
     <session-config>
         <session-timeout>5000</session-timeout>
     </session-config>

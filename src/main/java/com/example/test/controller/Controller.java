@@ -113,6 +113,7 @@ public class Controller extends HttpServlet {
                 /*Get account from session and renew it*/
                 account = (Account) req.getSession().getAttribute("account");
                 account = new Account();
+                req.getSession().setAttribute("account", account);
 
                 /*Set quantity of original product list to 0*/
                 for (Product i: originalProducts) {
